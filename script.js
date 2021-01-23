@@ -10,10 +10,12 @@ var specialCharacters = ["@", "%", "+", "!", "#", "$", "^", "?", ":", ",", "(", 
 var generateBtn = document.querySelector("#generate");
 
 function generatePassword () {
-  //select length of password 
+//select length of password 
   var characterQuantity = prompt("How many characters would you like your password to be? (between 8 and 128)") 
     
-  if (characterQuantity < 8 || characterQuantity > 128) {alert("Please choose a valid number")}
+  if (characterQuantity < 8 || characterQuantity > 128) {
+    alert("Please choose a valid number")
+return generatePassword ()}
 
 //boolean variables chosen by user 
   var characterLC = confirm("Would you like your password to include lower case letters?");
@@ -21,20 +23,19 @@ function generatePassword () {
   var characterN = confirm("Would you like your password to include numbers?");
   var characterSC = confirm("Would you like your password to include special characters?");
 
-  if (!characterLC&&!characterUP&&!characterN&&!characterSC) {alert("Please select at least one type of character.")}
+  if (!characterLC&&!characterUP&&!characterN&&!characterSC) {
+    alert("Please select at least one type of character.")
+  return generatePassword ()}
 
   var chosenCharacters = [""];
 
- 
-
-  // determining what characters will be chosen after user checks booleans
+// determining what characters will be chosen after user checks booleans
 if (characterLC){chosenCharacters.push(lowerCase)}
 if (characterUP){chosenCharacters.push(upperCase)}
 if (characterN){chosenCharacters.push(numeric)}
 if (characterSC){chosenCharacters.push(specialCharacters)}
 
-
-
+//selecting characters for password 
   
   }
   
