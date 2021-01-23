@@ -9,7 +9,13 @@ var specialCharacters = ["@", "%", "+", "!", "#", "$", "^", "?", ":", ",", "(", 
 
 var generateBtn = document.querySelector("#generate");
 
+function randomArray (array) {
+var Index= Math.floor(Math.random() * randomArray.length);
+return array[Index]
+}
+
 function generatePassword () {
+
 //select length of password 
   var characterQuantity = prompt("How many characters would you like your password to be? (between 8 and 128)") 
     
@@ -27,7 +33,7 @@ return generatePassword ()}
     alert("Please select at least one type of character.")
   return generatePassword ()}
 
-  var chosenCharacters = [""];
+  var chosenCharacters = [];
 
 // determining what characters will be chosen after user checks booleans
 if (characterLC){chosenCharacters.push(lowerCase)}
@@ -36,7 +42,13 @@ if (characterN){chosenCharacters.push(numeric)}
 if (characterSC){chosenCharacters.push(specialCharacters)}
 
 //selecting characters for password 
-  
+var passwordString = []
+
+while (passwordString.length < chosenCharacters.length) {
+  passwordString.push(randomArray(chosenCharacters))
+}
+
+return passwordString.join("")
   }
   
 
