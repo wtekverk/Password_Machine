@@ -7,31 +7,34 @@ var specialCharacters = ["@", "%", "+", "!", "#", "$", "^", "?", ":", ",", "(", 
 
 var generateBtn = document.querySelector("#generate");
 
+//function that choses random characters from array 
 function randomArray(array) {
   var Index = Math.floor(Math.random() * array.length);
   return array[Index]
 }
 
+
 function generatePassword() {
-  //selecting characters for password 
-  var passwordString = []
-  var chosenCharacters = []
+  var passwordString = [] //this is what the actual password will be made out of
+  var chosenCharacters = [] //these are the characters the user chooses with the confirm questions 
 
 
   //select length of password 
   var characterQuantity = prompt("How many characters would you like your password to be? (between 8 and 128)")
 
+  //if the characters are not within the provided limits you will have to start over 
   if (characterQuantity < 8 || characterQuantity > 128) {
     alert("Please choose a valid number")
     return generatePassword()
   }
 
-  //boolean variables chosen by user 
+  //boolean variables chosen by user and stored to make users own array of characters 
   var characterLC = confirm("Would you like your password to include lower case letters?");
   var characterUP = confirm("Would you like your password to include upper case letters");
   var characterN = confirm("Would you like your password to include numbers?");
   var characterSC = confirm("Would you like your password to include special characters?");
 
+  //if no characters are selected user returns to beginning 
   if (!characterLC && !characterUP && !characterN && !characterSC) {
     alert("Please select at least one type of character.")
     return generatePassword()
@@ -39,7 +42,7 @@ function generatePassword() {
 
 
 
-  // determining what characters will be chosen after user checks booleans
+  // determining what characters will be sent to chosenCharacter array after user checks booleans
   if (characterLC) {
     chosenCharacters = chosenCharacters.concat(lowerCase)
   }
@@ -53,11 +56,13 @@ function generatePassword() {
     chosenCharacters = chosenCharacters.concat(specialCharacters)
   }
 
+  //use the randomArray function and character Quantity to make a random array of characters with a specific length 
   while (passwordString.length < parseInt(characterQuantity) ) {
     passwordString.push(randomArray(chosenCharacters))
 
   }
 
+  //makes the array one string 
   return passwordString.join("")
 }
 
